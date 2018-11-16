@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Create an employee</h3>
+            <a th:href="@{/}">Go to list</a>
+            <th:block th:if="${message}">
+                <p th:text="${message}">Employee created successfully</p>
+            </th:block>
+            <form th:action="@{/create}" method="post" class="table-responsive">
+            <table id="mytable" class="table table-bordered table-striped" th:object="${employee}">
+                <tr>
+                    <td>ID</td>
+                    <td>NAME</td>
+                    <td>ROLE</td>
+                    <td>DIRECT MANAGER</td>
+                </tr>
+                <tr>
+                    <td><input type="text" th:field="*{id}"></td>
+                    <td><input type="text" th:field="*{name}"></td>
+                    <td><input type="text" th:field="*{role}"></td>
+                    <td><input type="text" th:field="*{directManager}"></td>
+                </tr>
+                <tr>
+                    <td><p th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Id Error</p></td>
+                    <td><p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p></td>
+                    <td><p th:if="${#fields.hasErrors('role')}" th:errors="*{role}">Role Error</p></td>
+                    <td><p th:if="${#fields.hasErrors('directManager')}" th:errors="*{directManager}">Direct Manager Error</p></td>
+                </tr>
+                <tr>
+                    <td>ID CARD</td>
+                    <td>ADDRESS</td>
+                    <td>EMAIL</td>
+                    <td>PHONE</td>
+                </tr>
+                <tr>
+                    <td><input type="text" th:field="*{idCard}"></td>
+                    <td><input type="text" th:field="*{address}"></td>
+                    <td><input type="text" th:field="*{email}"></td>
+                    <td><input type="text" th:field="*{phone}"></td>
+                </tr>
+                <tr>
+                    <td><p th:if="${#fields.hasErrors('idCard')}" th:errors="*{idCard}">Id Card Error</p></td>
+                    <td><p th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Address Error</p></td>
+                    <td><p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</p></td>
+                    <td><p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Phone Error</p></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" class="btn-primary" value="Submit"></td>
+                </tr>
+            </table>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
